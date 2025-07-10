@@ -1,0 +1,47 @@
+.style {
+  background: #ffffff;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    transform: translateY(-5px) scale(1.1);
+  }
+}
+img {
+  max-width: none;
+  height: 100%;
+  // width: 100%;
+  border-radius: 10px;
+}
+
+@media (max-width: 1540px) {
+  .browse {
+    .container {
+      .styles {
+        .style {
+          flex-basis: 100%;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 758px) {
+  .browse {
+    .container {
+      .styles {
+        .style {
+          gap: 0;
+
+          overflow: hidden;
+
+          &:hover {
+            transform: scale(1) translateY(-5px);
+          }
+        }
+      }
+    }
+  }
+}

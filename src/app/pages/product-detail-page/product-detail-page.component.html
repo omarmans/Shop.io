@@ -1,0 +1,140 @@
+<div class="product">
+  <div class="container">
+    <div class="path flex items-center gap-1 mb-7">
+      <a href="/" class="text-[#00000099] opacity-60">Home > </a>
+      <a href="#" class="text-[#00000099] opacity-60">Shop ></a
+      ><a href="" class="">T-shirts</a>
+    </div>
+
+    <div class="product-details flex gap-5">
+      <div class="left-sec">
+        <div class="product-imgs flex items-start w-[750px] gap-2">
+          <div class="small-pic flex flex-col justify-between gap-2">
+            @for (img of imgs(); track img) {
+            <div class="w-[150px] mb-2">
+              <img [src]="img" alt="" class="w-full rounded-3xl p-2" />
+            </div>
+            }
+          </div>
+          <div class="big-pic">
+            <img
+              src="imgs/product/mainFrame.png"
+              alt=""
+              class="w-full rounded-3xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="right-sec flex flex-col gap-5">
+        <h1 class="title text-4xl font-bold">One Life Graphic T--shirt</h1>
+        <div class="rate flex gap-2">
+          <div class="flex items-center gap-1 text-yellow-500 text-xl">
+            <ng-container *ngFor="let star of getStars(4.5)">
+              <ng-container [ngSwitch]="star">
+                <i *ngSwitchCase="'full'" class="fas fa-star"></i>
+                <i *ngSwitchCase="'half'" class="fas fa-star-half-alt"></i>
+                <i *ngSwitchCase="'empty'" class="far fa-star"></i>
+              </ng-container>
+            </ng-container>
+          </div>
+          <span>4.5/ <span class="text-[#00000099]">5</span> </span>
+        </div>
+        <div class="price flex gap-3 mt-4 mb-2">
+          <span class="font-bold text-2xl">$260</span>
+          <span
+            class="line-through text-[#00000066] opacity-60 font-bold text-2xl"
+            >$300</span
+          >
+          <span
+            class="bg-[#FF33331A] text-[#FF3333] p-2 rad w-[100px] text-center"
+          >
+            {{ -40 }} %
+          </span>
+        </div>
+        <p class="desc text-[#00000099] mt-2 pb-4">
+          This graphic t-shirt which is perfect for any occasion. Crafted from a
+          soft and breathable fabric, it offers superior comfort and style.
+        </p>
+        <div class="colors-container desc mt-2 pb-4 desc">
+          <h4 class="text-xl mb-2 text-[#00000099]">Select Colors</h4>
+          <div class="colors flex flex-wrap gap-2">
+            @for (color of colors(); track color) {
+            <div
+              class="w-10 h-10 rounded-full cursor-pointer flex items-center justify-center"
+              [style.background]="color"
+              [class.border-black]="isSelected(color)()"
+              (click)="selectColor(color)"
+            >
+              <div
+                *ngIf="isSelected(color)()"
+                class="flex items-center justify-center"
+              >
+                <img src="imgs/icons/choose.png" alt="" />
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="mt-2 pb-4 desc">
+          <h4 class="text-xl mb-2 text-[#00000099]">Choose Size</h4>
+          <div class="flex gap-3 items-center">
+            @for (size of sizes(); track $index) {
+            <label class="size-label">
+              <input type="checkbox" [value]="size" hidden />
+              {{ size }}
+            </label>
+            }
+          </div>
+        </div>
+        <div class="card flex items-center gap-5 mt-4 mb-4">
+          <div
+            class="counter bg-[#F0F0F0] flex items-center justify-between text-[#000000] p-3 text-center w-[200px] h-[52px] rounded-[62px]"
+          >
+            <button (click)="decrement()" [disabled]="quaninty() === 0">
+              <img src="imgs/icons/mins.png" alt="" class="w-[20px]" />
+            </button>
+            <span class="text-xl">{{ quaninty() }}</span>
+
+            <button (click)="increment()">
+              <img src="imgs/icons/plus.png" alt="" class="w-[20px]" />
+            </button>
+          </div>
+          <button
+            class="w-full h-[52px] rounded-[62px] bg-black text-white hover:bg-neutral-800 transition"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ul class="links flex basis-full items-center justify-between">
+      <li
+        class="text-center pb-3"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="details">Product Details</a>
+      </li>
+      <li
+        class="text-center pb-3"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="review">Rating & Reviews</a>
+      </li>
+      <li
+        class="text-center pb-3"
+        routerLinkActive="router-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="faqs">FAQs</a>
+      </li>
+    </ul>
+
+    <div class="routing">
+      <router-outlet />
+    </div>
+  </div>
+</div>
