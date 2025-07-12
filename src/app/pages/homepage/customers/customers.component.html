@@ -19,7 +19,7 @@
     </div>
 
     <owl-carousel-o #owlCar [options]="carouselOptions">
-      <ng-container *ngFor="let customer of CUSTOMERS">
+      <ng-container *ngFor="let customer of CUSTOMERS()">
         <ng-template carouselSlide>
           <div class="customer-card p-2 pt-5 shadow rounded h-40 bg-[#FFFFFF]">
             <div class="flex items-start flex-col mb-2">

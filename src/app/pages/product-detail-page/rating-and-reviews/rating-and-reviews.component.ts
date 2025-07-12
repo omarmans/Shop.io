@@ -1,9 +1,19 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   data,
   DynamicProudctsComponent,
 } from '../../../shared/dynamic-proudcts/dynamic-proudcts.component';
+import { CommentsService } from '../../../services/comments.service';
+import { debounceTime } from 'rxjs';
+import { Comment } from '../../../shared/models/comment.interface';
 
 @Component({
   selector: 'app-rating-and-reviews',
@@ -11,159 +21,35 @@ import {
   templateUrl: './rating-and-reviews.component.html',
   styleUrl: './rating-and-reviews.component.scss',
 })
-export class RatingAndReviewsComponent {
+export class RatingAndReviewsComponent implements OnInit {
+  showErr = signal(false);
+  private commentSerive = inject(CommentsService);
+  ngOnInit(): void {
+    this.getComments();
+  }
   visibleCount = signal(8);
   visibleCustomers = computed(() => {
-    return this.CUSTOMERS.slice(0, this.visibleCount());
+    return this.CUSTOMERS().slice(0, this.visibleCount());
   });
 
   showMore() {
     this.visibleCount.update((count) => count + 8);
   }
 
-  CUSTOMERS = [
-    {
-      rate: 5,
-      name: 'Sarah M.',
-      comment:
-        "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
-      date: 'June 20, 2025',
-    },
-    {
-      rate: 5,
-      name: 'James L.',
-      comment:
-        'Shop.co never disappoints! Their delivery is always on time and the clothes fit perfectly. Highly recommend!',
-      date: 'June 15, 2025',
-    },
-    {
-      rate: 4,
-      name: 'Emily R.',
-      comment:
-        'Great quality and affordable prices. The customer service was really helpful with my order.',
-      date: 'June 12, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Ahmed H.',
-      comment:
-        'I was skeptical at first, but Shop.co exceeded my expectations. Stylish, comfortable, and delivered fast.',
-      date: 'June 8, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Jessica K.',
-      comment:
-        'Absolutely love the variety they offer. I can always find something that suits my mood and style.',
-      date: 'June 5, 2025',
-    },
-    {
-      rate: 4,
-      name: 'Omar F.',
-      comment:
-        'Very happy with my purchase! The quality is excellent and the packaging was neat and professional.',
-      date: 'June 1, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Maya S.',
-      comment:
-        'Shop.co makes online shopping so much easier. The items look exactly like the pictures. No surprises!',
-      date: 'May 28, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Daniel W.',
-      comment:
-        'This is my go-to store now. Trendy styles and they always have great discounts too!',
-      date: 'May 25, 2025',
-    },
-    {
-      rate: 4,
-      name: 'Lina T.',
-      comment:
-        'Loved the fabric and the colors. Everything I ordered fits perfectly and looks amazing.',
-      date: 'May 22, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Tommy G.',
-      comment:
-        'Fast shipping, great prices, and high-quality clothes. What more can I ask for?',
-      date: 'May 18, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Nour A.',
-      comment:
-        'Amazing experience! I bought a gift for my sister and she absolutely loved it.',
-      date: 'May 15, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Kevin B.',
-      comment:
-        'Shop.co has really raised the bar for online shopping. Love their attention to detail.',
-      date: 'May 13, 2025',
-    },
-    {
-      rate: 4,
-      name: 'Isabella N.',
-      comment:
-        'Really impressed with the latest collection. The site is easy to navigate and the checkout process is smooth.',
-      date: 'May 10, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Ali R.',
-      comment:
-        "I've recommended Shop.co to all my friends. Their fashion game is strong!",
-      date: 'May 8, 2025',
-    },
-    {
-      rate: 4,
-      name: 'Sophia L.',
-      comment:
-        'The clothes are so comfy and stylish. I just wish they had more color options.',
-      date: 'May 5, 2025',
-    },
-    {
-      rate: 5,
-      name: 'David J.',
-      comment:
-        'Excellent value for money. The material feels luxurious and the sizing is just right.',
-      date: 'May 2, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Hana E.',
-      comment:
-        'One of the best online shopping experiences I’ve ever had. Will definitely shop here again!',
-      date: 'April 30, 2025',
-    },
-    {
-      rate: 4,
-      name: 'Mohamed K.',
-      comment:
-        'Clothes came on time and looked great. Only issue was one size that ran slightly small.',
-      date: 'April 28, 2025',
-    },
-    {
-      rate: 5,
-      name: 'Rachel D.',
-      comment:
-        "If you're looking for style and comfort, Shop.co is the place. Love my new outfits!",
-      date: 'April 25, 2025',
-    },
-    {
-      rate: 5,
-      name: 'George P.',
-      comment:
-        'Top-notch service and beautiful designs. I’ll definitely be a repeat customer.',
-      date: 'April 22, 2025',
-    },
-  ];
-
+  CUSTOMERS = signal<Comment[]>([]);
+  getComments() {
+    this.commentSerive.getComments().subscribe({
+      next: (res: Comment[]) => {
+        this.CUSTOMERS.set(res);
+        this.commentSerive.setComments(res);
+        this.showErr.set(false);
+      },
+      error: (err) => {
+        console.error('Error loading comments:', err);
+        this.showErr.set(true);
+      },
+    });
+  }
   You_might_also_like = [
     {
       id: 1,
