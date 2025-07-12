@@ -8,7 +8,7 @@
 
   .rightSec {
     height: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     img {
       // width: 100%;
       // max-width: 100%;
@@ -67,12 +67,20 @@ button {
       margin: 10px;
     }
   }
+  .rightSec {
+    .small {
+      top: 35%;
+
+      left: 140px;
+    }
+  }
 }
 @media (max-width: 650px) {
   .landing {
     .container {
       // flex-wrap: wrap;
-      // text-align: center;
+      // text-align: center;ove\\
+      overflow: hidden;
       display: block;
       text-align: center;
       .leftSec {
@@ -84,6 +92,17 @@ button {
           text-align: center;
           .stat {
           }
+        }
+      }
+      .rightSec {
+        .small {
+          left: 50px;
+          top: 35%;
+        }
+        .big {
+          top: 50px;
+          width: 60px;
+          right: 0;
         }
       }
     }
