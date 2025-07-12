@@ -30,19 +30,19 @@ button {
 @media (max-width: 1280px) {
   .landing {
     .container {
+      display: block !important;
+      padding-top: 30px !important;
       .leftSec {
         h1 {
           margin-top: 30px;
         }
         .stats {
           flex-wrap: wrap;
-          flex-direction: row;
-          // align-items: center;
           justify-content: space-between;
+          gap: 10px;
           .stat {
-            // flex-direction: row;
-            // flex-wrap: wrap;
-            margin-bottom: 10px;
+            justify-content: center;
+            align-items: center;
           }
         }
       }
