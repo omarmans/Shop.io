@@ -1,5 +1,4 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { data } from '../../shared/dynamic-proudcts/dynamic-proudcts.component';
 import {
   ActivatedRoute,
   RouterLink,
@@ -7,6 +6,8 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { newArrivals } from '../../shared/data/newArrivals';
+import { ProductData } from '../../shared/models/productData.interface';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -23,7 +24,13 @@ import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
   styleUrl: './product-detail-page.component.scss',
 })
 export class ProductDetailPageComponent implements OnInit {
-  product?: data;
+  product?: ProductData;
+  products = newArrivals;
+  ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    this.product = this.products().find((p: ProductData) => p?.id === id);
+    console.log(this.product);
+  }
   // counter
   quaninty = signal(0);
   increment() {
@@ -50,10 +57,7 @@ export class ProductDetailPageComponent implements OnInit {
 
   sizes = signal(['Small', 'Medium', 'Large', 'X-large']);
   private route = inject(ActivatedRoute);
-  ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id')!;
-    // this.product = products.find(p => p.id === id);
-  }
+
   getStars(rate: number): ('full' | 'half' | 'empty')[] {
     const full = Math.floor(rate);
     const half = rate % 1 >= 0.25 && rate % 1 < 0.75;

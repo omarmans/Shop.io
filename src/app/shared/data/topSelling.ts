@@ -1,0 +1,106 @@
+import { signal } from '@angular/core';
+import { ProductData } from '../models/productData.interface';
+
+export const topSelling = signal<ProductData[]>([
+  {
+    id: 1,
+    name: 'VERTICAL STRIPED SHIRT',
+    rate: 5.0,
+    price: 212,
+    img: 'imgs/top-selling/Frame1.svg',
+    mainPrice: 232,
+    discountPricePrecntge: -20,
+    description:
+      'Classic vertical striped shirt perfect for formal or smart casual looks.',
+  },
+  {
+    id: 2,
+    name: 'COURAGE GRAPHIC T-SHIRT',
+    rate: 4,
+    price: 240,
+    img: 'imgs/top-selling/Frame2.svg',
+    description: 'Bold graphic tee with a message of strength and style.',
+  },
+  {
+    id: 3,
+    name: 'LOOSE FIT BERMUDA SHORTS',
+    rate: 3,
+    price: 80,
+    img: 'imgs/top-selling/Frame3.svg',
+    description:
+      'Comfortable and relaxed Bermuda shorts ideal for summer days.',
+  },
+  {
+    id: 4,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Trendy faded skinny jeans with a snug fit and modern look.',
+  },
+  {
+    id: 5,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Stylish skinny jeans with a timeless faded wash.',
+  },
+  {
+    id: 6,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description:
+      'A best-selling pair of jeans known for comfort and durability.',
+  },
+  {
+    id: 7,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Modern and sleek skinny jeans with a faded effect.',
+  },
+  {
+    id: 8,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Slim-fit jeans with a soft texture and faded design.',
+  },
+  {
+    id: 9,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'High-quality denim with a washed look for everyday wear.',
+  },
+  {
+    id: 10,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Popular faded jeans that go with any outfit.',
+  },
+  {
+    id: 11,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Comfortable skinny jeans with a vintage faded finish.',
+  },
+  {
+    id: 12,
+    name: 'FADED SKINNY JEANS',
+    rate: 4.5,
+    price: 210,
+    img: 'imgs/top-selling/Frame4.svg',
+    description: 'Iconic faded jeans that never go out of fashion.',
+  },
+]);

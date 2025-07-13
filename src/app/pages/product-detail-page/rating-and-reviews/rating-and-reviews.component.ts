@@ -7,12 +7,9 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import {
-  data,
-  DynamicProudctsComponent,
-} from '../../../shared/dynamic-proudcts/dynamic-proudcts.component';
+import { DynamicProudctsComponent } from '../../../shared/dynamic-proudcts/dynamic-proudcts.component';
 import { CommentsService } from '../../../services/comments.service';
-import { debounceTime } from 'rxjs';
+import { debounceTime, delay } from 'rxjs';
 import { Comment } from '../../../shared/models/comment.interface';
 
 @Component({
@@ -38,17 +35,21 @@ export class RatingAndReviewsComponent implements OnInit {
 
   CUSTOMERS = signal<Comment[]>([]);
   getComments() {
-    this.commentSerive.getComments().subscribe({
-      next: (res: Comment[]) => {
-        this.CUSTOMERS.set(res);
-        this.commentSerive.setComments(res);
-        this.showErr.set(false);
-      },
-      error: (err) => {
-        console.error('Error loading comments:', err);
-        this.showErr.set(true);
-      },
-    });
+    this.showErr.set(true);
+    this.commentSerive
+      .getComments()
+      .pipe(delay(5000))
+      .subscribe({
+        next: (res: Comment[]) => {
+          this.CUSTOMERS.set(res);
+          this.commentSerive.setComments(res);
+          this.showErr.set(false);
+        },
+        error: (err) => {
+          console.error('Error loading comments:', err);
+          this.showErr.set(true);
+        },
+      });
   }
   You_might_also_like = [
     {

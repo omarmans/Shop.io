@@ -16,18 +16,18 @@
             </div>
             }
           </div>
-          <div class="big-pic">
+          <div class="big-pic m-auto">
             <img
-              src="imgs/product/mainFrame.png"
+              src="{{ product?.img }}"
               alt=""
-              class="w-full rounded-3xl"
+              class="w-[600px] rounded-3xl"
             />
           </div>
         </div>
       </div>
 
       <div class="right-sec flex flex-col gap-5">
-        <h1 class="title text-4xl font-bold">One Life Graphic T--shirt</h1>
+        <h1 class="title text-4xl font-bold">{{ product?.name }}</h1>
         <div class="rate flex gap-2">
           <div class="flex items-center gap-1 text-yellow-500 text-xl">
             <ng-container *ngFor="let star of getStars(4.5)">
@@ -38,23 +38,26 @@
               </ng-container>
             </ng-container>
           </div>
-          <span>4.5/ <span class="text-[#00000099]">5</span> </span>
-        </div>
-        <div class="price flex gap-3 mt-4 mb-2">
-          <span class="font-bold text-2xl">$260</span>
           <span
+            >{{ product?.rate }}/ <span class="text-[#00000099]">5</span>
+          </span>
+        </div>
+        <div class="price flex gap-3 mt-4 mb-2 items-center">
+          <span class="font-bold text-2xl">${{ product?.price }}</span>
+          <span
+            *ngIf="product?.mainPrice"
             class="line-through text-[#00000066] opacity-60 font-bold text-2xl"
-            >$300</span
+            >${{ product?.mainPrice }}</span
           >
           <span
+            *ngIf="product?.discountPricePrecntge"
             class="bg-[#FF33331A] text-[#FF3333] p-2 rad w-[100px] text-center"
           >
-            {{ -40 }} %
+            {{ product?.discountPricePrecntge }} %
           </span>
         </div>
         <p class="desc text-[#00000099] mt-2 pb-4">
-          This graphic t-shirt which is perfect for any occasion. Crafted from a
-          soft and breathable fabric, it offers superior comfort and style.
+          {{ product?.description }}
         </p>
         <div class="colors-container desc mt-2 pb-4 desc">
           <h4 class="text-xl mb-2 text-[#00000099]">Select Colors</h4>

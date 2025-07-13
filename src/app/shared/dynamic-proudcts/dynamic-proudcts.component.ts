@@ -8,16 +8,8 @@ import {
   trigger,
 } from '@angular/animations';
 import { Router } from '@angular/router';
-export interface data {
-  id: number;
-  name: string;
-  rate: number;
-  price: number;
-  img: string;
-  discount?: number;
-  mainPrice?: number;
-  discountPricePrecntge?: number;
-}
+import { ProductData } from '../models/productData.interface';
+
 @Component({
   selector: 'app-dynamic-proudcts',
   imports: [NgFor, CommonModule],
@@ -36,7 +28,7 @@ export interface data {
 })
 export class DynamicProudctsComponent {
   header = input.required<string>();
-  products = input.required<data[]>();
+  products = input.required<ProductData[]>();
   showAll = false;
   private router = inject(Router);
 

@@ -22,7 +22,7 @@ export class CustomersComponent implements OnInit {
     this.commentSerive.comments$.subscribe(
       (res: Comment[]) => {
         this.CUSTOMERS.set(res);
-        console.log('res', res);
+        // console.log('res', res);
       },
       (err) => {
         console.log('no data');
