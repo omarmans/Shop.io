@@ -27,6 +27,10 @@ export class ProductDetailPageComponent implements OnInit {
   product?: ProductData;
   products = newArrivals;
   ngOnInit() {
+    //عشان يظهر المنتج من الاول و ف نفس الوقت يظهر التعليقات
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.product = this.products().find((p: ProductData) => p?.id === id);
     console.log(this.product);

@@ -113,31 +113,19 @@
     </div>
 
     <ul class="links flex basis-full items-center justify-between">
-      <li
-        class="text-center pb-3"
-        routerLinkActive="router-link-active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <li class="text-center pb-3" routerLinkActive="router-link-active">
         <a routerLink="details">Product Details</a>
       </li>
-      <li
-        class="text-center pb-3"
-        routerLinkActive="router-link-active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <li class="text-center pb-3" routerLinkActive="router-link-active">
         <a routerLink="review">Rating & Reviews</a>
       </li>
-      <li
-        class="text-center pb-3"
-        routerLinkActive="router-link-active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <li class="text-center pb-3" routerLinkActive="router-link-active">
         <a routerLink="faqs">FAQs</a>
       </li>
     </ul>
 
     <div class="routing">
-      <router-outlet />
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
