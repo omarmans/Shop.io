@@ -2,11 +2,12 @@
   <div class="container">
     <div class="path flex items-center gap-1 mb-7">
       <a href="/" class="text-[#00000099] opacity-60">Home > </a>
-      <a href="#" class="text-[#00000099] opacity-60">Shop ></a
-      ><a href="" class="">T-shirts</a>
+      <a href="#" class="text-[#00000099] opacity-60"
+        >{{ product?.category }} ></a
+      ><a href="" class="">{{ product?.name }}</a>
     </div>
 
-    <div class="product-details flex gap-5">
+    <div class="product-details flex gap-5" [formGroup]="productFormData">
       <div class="left-sec">
         <div class="product-imgs flex items-start w-[750px] gap-2">
           <div class="small-pic flex flex-col justify-between gap-2">
@@ -30,7 +31,7 @@
         <h1 class="title text-4xl font-bold">{{ product?.name }}</h1>
         <div class="rate flex gap-2">
           <div class="flex items-center gap-1 text-yellow-500 text-xl">
-            <ng-container *ngFor="let star of getStars(4.5)">
+            <ng-container *ngFor="let star of getStars(product?.rate)">
               <ng-container [ngSwitch]="star">
                 <i *ngSwitchCase="'full'" class="fas fa-star"></i>
                 <i *ngSwitchCase="'half'" class="fas fa-star-half-alt"></i>
@@ -84,7 +85,12 @@
           <div class="flex gap-3 items-center">
             @for (size of sizes(); track $index) {
             <label class="size-label">
-              <input type="checkbox" [value]="size" hidden />
+              <input
+                type="radio"
+                [value]="size"
+                hidden
+                formControlName="size"
+              />
               {{ size }}
             </label>
             }
@@ -104,7 +110,8 @@
             </button>
           </div>
           <button
-            class="w-full h-[52px] rounded-[62px] bg-black text-white hover:bg-neutral-800 transition"
+            (click)="onSubmit()"
+            class="w-full h-[52px] rounded-[62px] bg-black text-white hover:bg-neutral-800 transition disabled:opacity-5"
           >
             Add to Cart
           </button>

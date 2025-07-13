@@ -10,6 +10,7 @@ export const newArrivals = signal<ProductData[]>([
     img: 'imgs/new-arrivals/Frame1.svg',
     description:
       'A stylish t-shirt with unique tape detailing. Perfect for casual outings.',
+    category: 'T-Shirts',
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const newArrivals = signal<ProductData[]>([
     discountPricePrecntge: -20,
     description:
       'Graphic tee with bold “Courage” print. Comfortable and expressive.',
+    category: 'Graphic Tees',
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ export const newArrivals = signal<ProductData[]>([
     discount: 0,
     description:
       'Loose-fitting Bermuda shorts for maximum comfort on warm days.',
+    category: 'Shorts',
   },
   {
     id: 4,
@@ -43,5 +46,6 @@ export const newArrivals = signal<ProductData[]>([
     discountPricePrecntge: -30,
     description:
       'Trendy faded skinny jeans that pair well with any top or jacket.',
+    category: 'Jeans',
   },
 ]);

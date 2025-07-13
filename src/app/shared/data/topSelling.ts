@@ -12,6 +12,7 @@ export const topSelling = signal<ProductData[]>([
     discountPricePrecntge: -20,
     description:
       'Classic vertical striped shirt perfect for formal or smart casual looks.',
+    category: 'Shirts',
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const topSelling = signal<ProductData[]>([
     price: 240,
     img: 'imgs/top-selling/Frame2.svg',
     description: 'Bold graphic tee with a message of strength and style.',
+    category: 'T-Shirts',
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ export const topSelling = signal<ProductData[]>([
     img: 'imgs/top-selling/Frame3.svg',
     description:
       'Comfortable and relaxed Bermuda shorts ideal for summer days.',
+    category: 'Shorts',
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Trendy faded skinny jeans with a snug fit and modern look.',
+    category: 'Jeans',
   },
   {
     id: 5,
@@ -45,6 +49,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Stylish skinny jeans with a timeless faded wash.',
+    category: 'Jeans',
   },
   {
     id: 6,
@@ -54,6 +59,7 @@ export const topSelling = signal<ProductData[]>([
     img: 'imgs/top-selling/Frame4.svg',
     description:
       'A best-selling pair of jeans known for comfort and durability.',
+    category: 'Jeans',
   },
   {
     id: 7,
@@ -62,6 +68,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Modern and sleek skinny jeans with a faded effect.',
+    category: 'Jeans',
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Slim-fit jeans with a soft texture and faded design.',
+    category: 'Jeans',
   },
   {
     id: 9,
@@ -78,6 +86,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'High-quality denim with a washed look for everyday wear.',
+    category: 'Jeans',
   },
   {
     id: 10,
@@ -86,6 +95,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Popular faded jeans that go with any outfit.',
+    category: 'Jeans',
   },
   {
     id: 11,
@@ -94,6 +104,7 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Comfortable skinny jeans with a vintage faded finish.',
+    category: 'Jeans',
   },
   {
     id: 12,
@@ -102,5 +113,6 @@ export const topSelling = signal<ProductData[]>([
     price: 210,
     img: 'imgs/top-selling/Frame4.svg',
     description: 'Iconic faded jeans that never go out of fashion.',
+    category: 'Jeans',
   },
 ]);

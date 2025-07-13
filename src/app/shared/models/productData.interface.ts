@@ -8,4 +8,5 @@ export interface ProductData {
   mainPrice?: number;
   discountPricePrecntge?: number;
   description?: string;
+  category?: string;
 }

@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -6,7 +7,17 @@ import { Component, signal } from '@angular/core';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
+  ngOnInit(): void {
+    this.cartService.loadFromLocalStorage();
+    this.cartService.cartsSubject.subscribe((res: any[]) => {
+      this.myCart.set(res);
+      console.log('🛒 My Cart:', res);
+    });
+  }
+
+  private cartService = inject(CartService);
+
   // counter
   quaninty = signal(0);
   increment() {
@@ -16,27 +27,30 @@ export class CartComponent {
     this.quaninty.set(this.quaninty() - 1);
   }
 
-  myCart = signal<any[]>([
-    {
-      name: 'Gradient Graphic T-shirt',
-      size: 'Large',
-      color: 'White',
-      price: 145,
-      img: 'imgs/also-like/image 8.png',
-    },
-    {
-      name: 'Black Striped T-shirt',
-      size: 'Medium',
-      color: 'Black',
-      price: 210,
-      img: 'imgs/also-like/image 10.png',
-    },
-    {
-      name: 'Polo with Contrast Trims',
-      size: 'Small',
-      color: 'Blue',
-      price: 320,
-      img: 'imgs/also-like/image 7.png',
-    },
-  ]);
+  myCart = signal<any>(
+    ''
+    //   [
+    //   {
+    //     name: 'Gradient Graphic T-shirt',
+    //     size: 'Large',
+    //     color: 'White',
+    //     price: 145,
+    //     img: 'imgs/also-like/image 8.png',
+    //   },
+    //   {
+    //     name: 'Black Striped T-shirt',
+    //     size: 'Medium',
+    //     color: 'Black',
+    //     price: 210,
+    //     img: 'imgs/also-like/image 10.png',
+    //   },
+    //   {
+    //     name: 'Polo with Contrast Trims',
+    //     size: 'Small',
+    //     color: 'Blue',
+    //     price: 320,
+    //     img: 'imgs/also-like/image 7.png',
+    //   },
+    // ]
+  );
 }

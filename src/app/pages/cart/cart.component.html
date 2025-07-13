@@ -10,7 +10,9 @@
         class="left-sec products br-one flex items-start justify-between flex-col w-[60%]"
       >
         @for (item of myCart(); track item.name) {
-        <div class="product flex items-center justify-center gap-2 w-full mb-8">
+        <div
+          class="product flex items-center justify-center gap-2 w-full mb-8 desc"
+        >
           <div class="img">
             <img
               src="{{ item.img }}"
