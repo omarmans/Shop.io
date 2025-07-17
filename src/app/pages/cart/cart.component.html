@@ -23,7 +23,12 @@
           <div class="content flex-1">
             <div class="header flex items-center justify-between mb-1">
               <h3 class="font-bold text-2xl">{{ item.name }}</h3>
-              <img src="imgs/icons/remove.png" alt="" />
+              <img
+                src="imgs/icons/remove.png"
+                alt=""
+                class="cursor-pointer"
+                (click)="removeItem(item)"
+              />
             </div>
             <div class="details text-[#00000099] mb-3">
               <p>Size:{{ item.size }}</p>

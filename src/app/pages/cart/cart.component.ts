@@ -1,5 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { ProductData } from '../../shared/models/productData.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -8,15 +10,14 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
+  myCart = signal<any>([]);
+  private cartService = inject(CartService);
   ngOnInit(): void {
     this.cartService.loadFromLocalStorage();
     this.cartService.cartsSubject.subscribe((res: any[]) => {
       this.myCart.set(res);
-      console.log('🛒 My Cart:', res);
     });
   }
-
-  private cartService = inject(CartService);
 
   // counter
   quaninty = signal(0);
@@ -27,30 +28,32 @@ export class CartComponent implements OnInit {
     this.quaninty.set(this.quaninty() - 1);
   }
 
-  myCart = signal<any>(
-    ''
-    //   [
-    //   {
-    //     name: 'Gradient Graphic T-shirt',
-    //     size: 'Large',
-    //     color: 'White',
-    //     price: 145,
-    //     img: 'imgs/also-like/image 8.png',
-    //   },
-    //   {
-    //     name: 'Black Striped T-shirt',
-    //     size: 'Medium',
-    //     color: 'Black',
-    //     price: 210,
-    //     img: 'imgs/also-like/image 10.png',
-    //   },
-    //   {
-    //     name: 'Polo with Contrast Trims',
-    //     size: 'Small',
-    //     color: 'Blue',
-    //     price: 320,
-    //     img: 'imgs/also-like/image 7.png',
-    //   },
-    // ]
-  );
+  //remove item
+  removeItem(item: ProductData) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `This will remove "${item.name}" from your cart.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedCart = this.myCart().filter(
+          (cartItem: ProductData) => cartItem.name !== item.name
+        );
+        this.myCart.set(updatedCart);
+
+        Swal.fire({
+          title: 'Deleted!',
+          text: `"${item.name}" has been removed.`,
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    });
+  }
 }

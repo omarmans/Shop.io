@@ -6,7 +6,7 @@ import {
   NgSwitch,
   NgSwitchCase,
 } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { products } from '../../shared/data/products';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
 
@@ -24,7 +24,11 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
   templateUrl: './proudcts.component.html',
   styleUrl: './proudcts.component.scss',
 })
-export class ProudctsComponent {
+export class ProudctsComponent implements OnInit {
+  ngOnInit() {
+    //عشان يظهر المنتج من الاول و ف نفس الوقت يظهر التعليقات
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   products = products;
   currentPage = 1;
   pageSize = 10;

@@ -5,9 +5,11 @@ import { FAQsComponent } from './pages/product-detail-page/faqs/faqs.component';
 import { DetailsComponent } from './pages/product-detail-page/details/details.component';
 
 export const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: '', component: HomepageComponent, title: 'Home' },
   {
     path: 'product-details/:id',
+    title: 'product-details',
+
     loadComponent: () =>
       import('./pages/product-detail-page/product-detail-page.component').then(
         (x) => x.ProductDetailPageComponent
@@ -25,10 +27,12 @@ export const routes: Routes = [
       import('./pages/proudcts/proudcts.component').then(
         (x) => x.ProudctsComponent
       ),
+    title: 'Products',
   },
   {
     path: 'cart',
     loadComponent: () =>
       import('./pages/cart/cart.component').then((x) => x.CartComponent),
+    title: 'Cart',
   },
 ];
